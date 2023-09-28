@@ -1,0 +1,42 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.8-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_USER: "admin"
+          POSTGRES_PASSWORD: "password"
+          POSTGRES_DB: "my-project"
+      mongo:
+        image: mongo:6.0.7-jammy
+        env:
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: password
+        ports:
+          - "27017:27017"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint:check
+      - run: npm run format:check
+      - run: npm run migrate
+      - run: npm run test:all
+        env:
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          TESTMAIL_API_KEY: ${{ secrets.TESTMAIL_API_KEY }}
