@@ -36,3 +36,6 @@ jobs:
       - run: npm run format:check
       - run: npm run migrate
       - run: npm run test:all
+        env:
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          TESTMAIL_API_KEY: ${{ secrets.TESTMAIL_API_KEY }}
