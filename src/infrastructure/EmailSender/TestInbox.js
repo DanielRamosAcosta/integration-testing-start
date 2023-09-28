@@ -33,6 +33,7 @@ export class TestInbox {
   }
 
   async getLastEmail() {
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const emails = await this.getEmailsInLast5Seconds()
       if (emails.length > 0) {
