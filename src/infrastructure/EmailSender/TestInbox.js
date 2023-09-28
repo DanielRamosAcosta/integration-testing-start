@@ -1,8 +1,10 @@
 import { sleep } from "../../domain/utils/sleep.js"
+import { config } from "../Shared/config.js"
 
 export class TestInbox {
-  constructor() {
-    this.messages = []
+  constructor({ apiKey = config.testInbox.apiKey, namespace = config.testInbox.namespace } = {}) {
+    this.apiKey = apiKey
+    this.namespace = namespace
   }
 
   /**
@@ -12,9 +14,8 @@ export class TestInbox {
    */
   async getEmails(from) {
     const params = new URLSearchParams({
-      apikey: "TODO",
-      namespace: "9eqfr",
-      pretty: true,
+      apikey: this.apiKey,
+      namespace: this.namespace,
       timestamp_from: from.getTime(),
     })
 

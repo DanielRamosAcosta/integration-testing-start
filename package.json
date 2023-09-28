@@ -14,7 +14,7 @@
   "scripts": {
     "test": "npm run test:unit",
     "test:all": "vitest",
-    "test:integration": "vitest --run --config vite.config.integration.js",
+    "test:integration": "node --env-file=.env node_modules/.bin/vitest --run --config vite.config.integration.js",
     "test:unit": "vitest --run --config vite.config.unit.js",
     "test:coverage": "vitest --coverage",
     "lint:fix": "eslint . --fix",
