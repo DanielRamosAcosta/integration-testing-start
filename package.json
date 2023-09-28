@@ -21,7 +21,7 @@
     "lint:check": "eslint .",
     "format:fix": "prettier --write .",
     "format:check": "prettier --check .",
-    "migrate": "node src/infrastructure/Shared/migrations/migrate-up.js",
+    "migrate": "node src/infrastructure/Shared/migrations/run.js",
     "prepare": "husky install"
   },
   "repository": {

@@ -1,4 +1,5 @@
-import { Client } from "pg"
+import pkg from "pg"
+const { Client } = pkg
 import { config } from "../Shared/config.js"
 
 export const postgresClient = new Client({
