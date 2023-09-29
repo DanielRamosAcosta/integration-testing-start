@@ -36,6 +36,7 @@
   "homepage": "https://github.com/AgileCraftsmanshipCanarias/kata-setup-javascript#readme",
   "dependencies": {
     "@koa/router": "^12.0.0",
+    "dotenv": "^16.3.1",
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
     "mongodb": "^6.1.0",
