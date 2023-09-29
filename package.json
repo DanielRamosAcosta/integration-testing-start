@@ -2,7 +2,7 @@
   "name": "kata-setup-javascript",
   "version": "1.0.0",
   "description": "Basic boilerplate project with Typecript",
-  "main": "src/main.js",
+  "main": "src/infrastructure/API/main.js",
   "type": "module",
   "devDependencies": {
     "@vitest/coverage-v8": "^0.34.5",

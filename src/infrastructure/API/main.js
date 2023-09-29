@@ -1,9 +1,9 @@
 import express from "express"
-import { RegisterUser } from "./application/RegisterUser.js"
-import { UserRepositoryMongo } from "./infrastructure/UserRepository/UserRepositoryMongo.js"
-import { IdGeneratorNode } from "./infrastructure/IdGenerator/IdGeneratorNode.js"
-import { EmailSenderMock } from "./infrastructure/EmailSender/EmailSenderMock.js"
-import { PostUserController } from "./infrastructure/Controllers/PostUserController.js"
+import { RegisterUser } from "../../application/RegisterUser.js"
+import { UserRepositoryMongo } from "../UserRepository/UserRepositoryMongo.js"
+import { IdGeneratorNode } from "../IdGenerator/IdGeneratorNode.js"
+import { EmailSenderMock } from "../EmailSender/EmailSenderMock.js"
+import { PostUserController } from "./Controllers/PostUserController.js"
 
 const app = express()
 const port = 3000
