@@ -4,6 +4,8 @@ const errorCodeToStatusMap = {
   [ErrorCode.USER_ALREADY_EXISTS]: 400,
   [ErrorCode.POST_NOT_FOUND]: 404,
   [ErrorCode.PASSWORD_TOO_SMALL]: 400,
+  [ErrorCode.INVALID_EMAIL_ERROR]: 400,
+  [ErrorCode.INVALID_PARAMS]: 400,
 }
 
 export function errorCodeToStatus(code) {

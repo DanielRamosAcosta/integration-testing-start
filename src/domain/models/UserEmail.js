@@ -1,9 +1,11 @@
+import { InvalidEmailError } from "../errors/InvalidEmailError.js"
+
 export class UserEmail {
   constructor(email) {
     this.email = email
 
     if (!this.email.includes("@")) {
-      throw new Error("Invalid email")
+      throw new InvalidEmailError()
     }
   }
 

@@ -7,6 +7,7 @@ import { PostUserController } from "./Controllers/PostUserController.js"
 import { DomainError } from "../../domain/errors/DomainError.js"
 import { errorCodeToStatus } from "./errorCodeToStatus.js"
 import { ErrorCode } from "../../domain/errors/ErrorCode.js"
+import { ZodError } from "zod"
 
 const app = express()
 const port = 3000
@@ -31,6 +32,14 @@ app.use((err, req, res, next) => {
       code: code,
       message: err.message,
       stack: err.stack,
+    })
+  }
+
+  if (err instanceof ZodError) {
+    return res.status(400).json({
+      code: ErrorCode.INVALID_PARAMS,
+      message: "There were invalid params",
+      errors: err.errors,
     })
   }
 
