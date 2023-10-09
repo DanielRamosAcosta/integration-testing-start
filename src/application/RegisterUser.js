@@ -1,4 +1,5 @@
 import { User } from "../domain/models/User.js"
+import { UserAlreadyExistsError } from "../domain/errors/UserAlreadyExistsError.js"
 
 export class RegisterUser {
   /**
@@ -17,7 +18,7 @@ export class RegisterUser {
     const alreadyExists = await this.userRepository.existsByEmail(email)
 
     if (alreadyExists) {
-      throw new Error("User already exists")
+      throw new UserAlreadyExistsError()
     }
 
     const user = User.create(this.idGenerator.generate(), name, email, password, age)
