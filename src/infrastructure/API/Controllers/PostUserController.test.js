@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest"
 import { PostUserController } from "./PostUserController.js"
+import { ZodError } from "zod"
 
 describe("PostUserController", () => {
   it("invokes the use case", async () => {
@@ -48,5 +49,27 @@ describe("PostUserController", () => {
     await postUserController.execute(req, res)
 
     expect(res.json).toHaveBeenCalledWith({ status: "ok" })
+  })
+
+  it("throws a zod error if email is not defined", async () => {
+    const registerUser = { execute: vi.fn() }
+    const postUserController = new PostUserController(registerUser)
+    const name = "John Doe"
+    const password = "password"
+    const age = 18
+    const req = {
+      body: {
+        name,
+        password,
+        age,
+      },
+    }
+    const res = {
+      json: vi.fn(),
+    }
+
+    const result = postUserController.execute(req, res)
+
+    expect(result).rejects.toBeInstanceOf(ZodError)
   })
 })
