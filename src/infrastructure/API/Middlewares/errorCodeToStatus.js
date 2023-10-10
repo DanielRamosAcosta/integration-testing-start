@@ -1,4 +1,4 @@
-import { ErrorCode } from "../../domain/errors/ErrorCode.js"
+import { ErrorCode } from "../../../domain/errors/ErrorCode.js"
 
 const errorCodeToStatusMap = {
   [ErrorCode.USER_ALREADY_EXISTS]: 400,

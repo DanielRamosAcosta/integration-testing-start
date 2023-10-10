@@ -11,6 +11,10 @@ export class EmailSenderMailgun extends EmailSender {
     this.domain = domain
     this.authUser = authUser
     this.apiKey = apiKey
+
+    if (!this.apiKey) {
+      throw new Error("Invalid API key")
+    }
   }
 
   async sendWelcomeEmail(user) {

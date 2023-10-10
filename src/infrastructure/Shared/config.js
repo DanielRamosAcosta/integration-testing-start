@@ -1,5 +1,3 @@
-import "dotenv/config"
-
 export const config = {
   mailgun: {
     domain: "sandbox261f754ab73b43388177e85a621a13fb.mailgun.org",

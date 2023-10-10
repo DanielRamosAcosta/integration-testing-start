@@ -1,7 +1,5 @@
-import { app } from "./app.js"
+import { Server } from "./Server.js"
 
-const port = 3000
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+const server = new Server()
+await server.connect()
+server.listen()

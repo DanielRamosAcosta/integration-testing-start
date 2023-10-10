@@ -40,6 +40,15 @@ describe("EmailSenderMailgun", () => {
 
     expect(result).rejects.toThrow("Invalid API key")
   })
+
+  it("throws an error if credentials in constructor are invalid", async () => {
+    expect(
+      () =>
+        new EmailSenderMailgun({
+          apiKey: null,
+        }),
+    ).toThrow("Invalid API key")
+  })
 })
 
 function createUser({ email = "pepe@example.com" } = {}) {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { ErrorCode } from "../../domain/errors/ErrorCode.js"
+import { ErrorCode } from "../../../domain/errors/ErrorCode.js"
 import { errorCodeToStatus } from "./errorCodeToStatus.js"
 
 describe("errorCodeToStatus", () => {
