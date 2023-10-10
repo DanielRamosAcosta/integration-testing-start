@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest"
 import { User } from "./User.js"
+import { InvalidEmailError } from "../errors/InvalidEmailError.js"
+import { InvalidPasswordError } from "../errors/InvalidPasswordError.js"
+import { UserMustBeAdultError } from "../errors/UserMustBeAdultError.js"
 
 describe("User", () => {
   const notImportantId = "00000000-0000-0000-0000-000000000000"
@@ -106,7 +109,7 @@ describe("User", () => {
 
     expect(() =>
       User.create(notImportantId, notImportantName, notImportantEmail, notImportantPassword, underAge),
-    ).toThrow("User must be 18 or older")
+    ).toThrow(UserMustBeAdultError)
   })
 
   it("throws an error if password if is below 6 characters", () => {
@@ -114,7 +117,7 @@ describe("User", () => {
 
     expect(() =>
       User.create(notImportantId, notImportantName, notImportantEmail, tooShortPassword, notImportantAge),
-    ).toThrow("Password must be 6 characters or longer")
+    ).toThrow(InvalidPasswordError)
   })
 
   it("throws an error with an invalid email", () => {
@@ -122,6 +125,6 @@ describe("User", () => {
 
     expect(() =>
       User.create(notImportantId, notImportantName, invalidEmail, notImportantPassword, notImportantAge),
-    ).toThrow("Invalid email")
+    ).toThrow(InvalidEmailError)
   })
 })

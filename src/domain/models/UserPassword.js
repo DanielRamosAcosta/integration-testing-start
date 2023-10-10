@@ -1,9 +1,10 @@
 import crypto from "node:crypto"
+import { InvalidPasswordError } from "../errors/InvalidPasswordError.js"
 
 export class UserPassword {
   static fromPlain(plainPassword) {
     if (plainPassword.length < 6) {
-      throw new Error("Password must be 6 characters or longer")
+      throw new InvalidPasswordError()
     }
 
     const hashed = crypto.createHash("sha256").update(plainPassword).digest().toString("hex")
