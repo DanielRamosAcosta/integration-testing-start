@@ -18,8 +18,9 @@ describe("PostUserController", () => {
         age,
       },
     }
+    const json = vi.fn()
     const res = {
-      json: vi.fn(),
+      status: () => ({ json }),
     }
 
     await postUserController.execute(req, res)
@@ -42,13 +43,14 @@ describe("PostUserController", () => {
         age,
       },
     }
+    const json = vi.fn()
     const res = {
-      json: vi.fn(),
+      status: () => ({ json }),
     }
 
     await postUserController.execute(req, res)
 
-    expect(res.json).toHaveBeenCalledWith({ status: "ok" })
+    expect(json).toHaveBeenCalledWith({ status: "ok" })
   })
 
   it("throws a zod error if email is not defined", async () => {

@@ -17,6 +17,6 @@ export class PostUserController {
 
     await this.registerUser.execute(name, email, password, age)
 
-    res.json({ status: "ok" })
+    res.status(201).json({ status: "ok" })
   }
 }
