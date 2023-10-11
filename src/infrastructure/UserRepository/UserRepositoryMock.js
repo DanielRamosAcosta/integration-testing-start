@@ -4,4 +4,8 @@ export class UserRepositoryMock extends UserRepository {
   save() {}
 
   existsByEmail() {}
+
+  findById() {}
+
+  findByEmail() {}
 }

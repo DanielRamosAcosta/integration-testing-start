@@ -31,6 +31,18 @@ export class UserRepositoryPostgresSQL extends UserRepository {
     return new User(user.id, user.name, user.email, new UserPassword(user.password), user.age)
   }
 
+  async findByEmail(email) {
+    const users = await this.client.query(`SELECT * FROM users WHERE email = $1`, [email])
+
+    const user = users.rows[0]
+
+    if (!user) {
+      return null
+    }
+
+    return new User(user.id, user.name, user.email, new UserPassword(user.password), user.age)
+  }
+
   async existsByEmail(email) {
     const users = await this.client.query(`SELECT COUNT(1) FROM users WHERE email = $1`, [email])
 

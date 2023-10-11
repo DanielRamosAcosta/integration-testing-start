@@ -40,13 +40,18 @@ export class UserRepositoryMongo extends UserRepository {
       return null
     }
 
-    return new User(
-      savedUser.id,
-      savedUser.name,
-      savedUser.email.email,
-      new UserPassword(savedUser.password.password),
-      savedUser.age.age,
-    )
+    return this.mongoToUser(savedUser)
+  }
+
+  async findByEmail(email) {
+    this.ensureIsConnected()
+    const savedUser = await this.users.findOne({ "email.email": email })
+
+    if (!savedUser) {
+      return null
+    }
+
+    return this.mongoToUser(savedUser)
   }
 
   async existsByEmail(email) {
@@ -60,5 +65,15 @@ export class UserRepositoryMongo extends UserRepository {
     if (!this.isConnected) {
       throw new Error("UserRepositoryMongo is not connected")
     }
+  }
+
+  mongoToUser(savedUser) {
+    return new User(
+      savedUser.id,
+      savedUser.name,
+      savedUser.email.email,
+      new UserPassword(savedUser.password.password),
+      savedUser.age.age,
+    )
   }
 }

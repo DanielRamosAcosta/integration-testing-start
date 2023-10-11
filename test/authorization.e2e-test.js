@@ -19,7 +19,7 @@ describe("authorization flow", () => {
   })
 
   it("can login after registering", async () => {
-    const { status, body } = await tepper(server.app)
+    const { status: registerStatus } = await tepper(server.app)
       .post("/users/register")
       .send({
         name: "Pepe",
@@ -28,8 +28,17 @@ describe("authorization flow", () => {
         age: 19,
       })
       .run()
+    expect(registerStatus).toBe(201)
 
-    expect(status).toBe(200)
-    expect(body.status).toBe("ok")
+    const { status: loginStatus, body } = await tepper(server.app)
+      .post("/users/login")
+      .send({
+        email: "pepe@gmail.com",
+        password: "password123",
+      })
+      .run()
+
+    expect(loginStatus).toBe(200)
+    expect(body.token).toContain("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
   })
 })

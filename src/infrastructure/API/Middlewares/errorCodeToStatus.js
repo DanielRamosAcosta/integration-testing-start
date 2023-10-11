@@ -8,6 +8,8 @@ const errorCodeToStatusMap = {
   [ErrorCode.INVALID_PARAMS]: 400,
   [ErrorCode.INVALID_PASSWORD_ERROR]: 400,
   [ErrorCode.USER_MUST_BE_ADULT_ERROR]: 400,
+  [ErrorCode.USER_WAS_NOT_FOUND]: 404,
+  [ErrorCode.WRONG_PASSWORD_ERROR]: 400,
 }
 
 export function errorCodeToStatus(code) {

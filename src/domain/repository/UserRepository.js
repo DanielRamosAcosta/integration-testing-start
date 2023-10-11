@@ -28,4 +28,14 @@ export class UserRepository {
   async existsByEmail(email) {
     throw new Error("This is an abstract class. You should implement the existsByEmail method")
   }
+
+  /**
+   * Check if the user exists by email
+   * @param {string} email
+   * @returns {Promise<User>}
+   */
+  // eslint-disable-next-line no-unused-vars
+  async findByEmail(email) {
+    throw new Error("This is an abstract class. You should implement the findByEmail method")
+  }
 }

@@ -65,4 +65,18 @@ describe.each([
 
     expect(existsUser).toBe(false)
   })
+
+  it("findByEmail returns the user if is found", async () => {
+    const id = "00000000-0000-0000-0000-000000000000"
+    const name = "John Doe"
+    const email = "john@email.com"
+    const age = 18
+    const password = "password"
+    const user = User.create(id, name, email, password, age)
+    await userRepository.save(user)
+
+    const foundUser = await userRepository.findByEmail(email)
+
+    expect(foundUser).toEqual(user)
+  })
 })

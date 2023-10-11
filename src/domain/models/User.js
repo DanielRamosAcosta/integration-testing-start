@@ -15,6 +15,10 @@ export class User {
     this.password = password
   }
 
+  getId() {
+    return this.id
+  }
+
   hasId(id) {
     return this.id === id
   }
@@ -31,7 +35,7 @@ export class User {
     return this.age.equals(new UserAge(age))
   }
 
-  compareWith(plainPassword) {
+  hasPassword(plainPassword) {
     return this.password.compareWith(plainPassword)
   }
 

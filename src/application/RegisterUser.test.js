@@ -48,8 +48,8 @@ describe("RegisterUser", () => {
 
     const result = registerUser.execute(notImportantName, notImportantEmail, notImportantPassword, notImportantAge)
 
-    expect(result).rejects.toThrow("User already exists")
-    expect(result).rejects.toBeInstanceOf(UserAlreadyExistsError)
+    await expect(result).rejects.toThrow("User already exists")
+    await expect(result).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
 
   it("sends a welcome email to the user", async () => {
