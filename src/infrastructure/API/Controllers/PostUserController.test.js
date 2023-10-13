@@ -50,7 +50,7 @@ describe("PostUserController", () => {
 
     await postUserController.execute(req, res)
 
-    expect(json).toHaveBeenCalledWith({ status: "ok" })
+    await expect(json).toHaveBeenCalledWith({ status: "ok" })
   })
 
   it("throws a zod error if email is not defined", async () => {
@@ -72,6 +72,6 @@ describe("PostUserController", () => {
 
     const result = postUserController.execute(req, res)
 
-    expect(result).rejects.toBeInstanceOf(ZodError)
+    await expect(result).rejects.toBeInstanceOf(ZodError)
   })
 })

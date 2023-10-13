@@ -68,7 +68,7 @@ describe("PostLoginUserController", () => {
 
     const result = postLoginUserController.execute(req, res)
 
-    expect(result).rejects.toBeInstanceOf(ZodError)
+    await expect(result).rejects.toBeInstanceOf(ZodError)
   })
 
   it("throws a zod error if password is not defined", async () => {
@@ -80,6 +80,6 @@ describe("PostLoginUserController", () => {
 
     const result = postLoginUserController.execute(req, res)
 
-    expect(result).rejects.toBeInstanceOf(ZodError)
+    await expect(result).rejects.toBeInstanceOf(ZodError)
   })
 })

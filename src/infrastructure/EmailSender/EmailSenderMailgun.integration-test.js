@@ -27,7 +27,7 @@ describe("EmailSenderMailgun", () => {
 
     const result = emailSender.sendWelcomeEmail(user)
 
-    expect(result).rejects.toThrow("to parameter is not a valid address. please check documentation")
+    await expect(result).rejects.toThrow("to parameter is not a valid address. please check documentation")
   })
 
   it("throws an error if credentials are invalid", async () => {
@@ -38,7 +38,7 @@ describe("EmailSenderMailgun", () => {
 
     const result = emailSender.sendWelcomeEmail(notImportantUser)
 
-    expect(result).rejects.toThrow("Invalid API key")
+    await expect(result).rejects.toThrow("Invalid API key")
   })
 
   it("throws an error if credentials in constructor are invalid", async () => {
